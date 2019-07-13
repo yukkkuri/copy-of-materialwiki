@@ -20,27 +20,12 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <div>
+
+        <div className="wrapper rel">
             <Navbar />
-          </div>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-
-            <Route path='/user-signin' component={UserSignIn} />
-            <Route path='/user-signup' component={UserSignUp} />
-            <Route path='/manufacturer-signin' component={ManufacturerSignIn} />
-            <Route path='/manufacturer-signup' component={ManufacturerSignUp} />
-
-            <Route path="/manufacturer/:uid" component={ManufacturerDashboard} />
-            {/* <Route path="/manufacturer/:uid" component={ManufacturerDashboard} /> */}            
-            <Route path="/user/" component={UserDashboard} />
-            {/* <Route path="/user/:uid" component={UserDashboard} /> */}
-
-          </Switch>
+            <HomePage />
         </div>
-      </BrowserRouter>
+
     );
   }
 }

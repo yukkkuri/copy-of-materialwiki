@@ -7,26 +7,39 @@ import { NavLink, Link } from 'react-router-dom'
 
 class Navbar extends Component {
 
-
+	baseurl=""
 	render() {
 		return (
-			<div>
-				<nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top" >
-					<div className='container'>
-						<Link to='/' className='navbar-brand default-link' href="#">MaterialWiki.
-						</Link>
+			<React.Fragment>
+			<div className="header fixed">
+			<a href={"#"} className="logl abs anim">
+			<img src = "" className="abs"/>
+			</a>
+				<div className="searchbox abs">
+					<input type="text" value="" placeholder="search" className="query bl s15"/>
+					<button className="send abs icon-search" title="search"></button>
+				</div>
+				<ul className="nav ibl abs">
+					<li>
+						<a href="#" className="bl s15 noul">Home</a>
+					</li>
+					<li>
+						<a href={"#"+"following"} className="bl s15 noul">Following</a>
+					</li>
+					<li>
+						<a href="#" className="bl ico s15 noul icon-message-square"></a>
+					</li>
+					<li>
+						<a href="#" className="bl ico s15 noul icon-bell rel"><div className="counter abs s12">9+</div></a>
+					</li>
+					<li>
+						<a href="#" className="bl ico s15 noul icon-more-horizontal"></a>
+					</li>
+				</ul>
 
-						<div className="navbar-collapse justify-content-end" >
-							<ul className='navbar-nav'>
-								<li className='nav-item'><NavLink className="nav-link default-link" to='/user-signup'>SignUp</NavLink> </li>
-								<li className='nav-item'><NavLink className="nav-link default-link" to='/user-signin'>Login</NavLink> </li>
-							</ul>
-						</div>
-						<Link className="modal-toggle" to="#" title="how to?"><strong>?</strong></Link>
-
-					</div>
-				</nav>
 			</div>
+			<div className="hclr rel"></div>
+			</React.Fragment>
 		);
 	}
 }
