@@ -17,46 +17,6 @@ class FeedList extends Component {
     }
 
     componentDidMount() {
-        //number of feed items to load each time
-        var pageLimit = 20;
-
-        //get unsplash images
-
-        axios.get('https://api.unsplash.com/photos/?client_id=66d4c29b16aa566253b58f4519b08355594d5e53a660cf28844c8021ac94874c')
-            .then((res) => {
-                
-                var urls = [];
-                res.data.forEach((obj) => { urls.push(obj.urls.regular); });
-                
-                //load all item urls from the server
-                this.setState({
-                    resultUrls: urls
-                })
-
-                return urls;
-            })
-
-            //send the urls to FeedItem
-            .then((urls) => {
-                var tempList = [];
-                if (urls.length >= pageLimit) {
-                    for (var n = 0; n < pageLimit; n++) {
-                        tempList.push(<FeedItem url={urls[n]} />);
-                    }
-                } else {
-                    for (var n = 0; n < urls.length; n++) {
-                        tempList.push(<FeedItem url={urls[n]} />);
-                    }
-                }
-                this.setState({
-                    itemList: tempList
-                }, () => {
-                    this.Bricks();
-                })
-            }
-
-            )
-
 
         window.addEventListener("resize", this.Bricks());
         window.addEventListener("scroll", this.handleScroll);
@@ -89,10 +49,53 @@ class FeedList extends Component {
                     //render the new items
                     this.Bricks();
                 })
+
+
             }
         }
     }
+    getData() {
 
+        //number of feed items to load each time
+        var pageLimit = 20;
+
+        //get unsplash images
+
+        axios.get('https://api.unsplash.com/photos/?client_id=66d4c29b16aa566253b58f4519b08355594d5e53a660cf28844c8021ac94874c')
+            .then((res) => {
+
+                var urls = [];
+                res.data.forEach((obj) => { urls.push(obj.urls.regular); });
+
+                //load all item urls from the server
+                this.setState({
+                    resultUrls: urls
+                })
+
+                return urls;
+            })
+
+            //send the urls to FeedItem
+            .then((urls) => {
+                var tempList = [];
+                if (urls.length >= pageLimit) {
+                    for (var n = 0; n < pageLimit; n++) {
+                        tempList.push(<FeedItem url={urls[n]} />);
+                    }
+                } else {
+                    for (var n = 0; n < urls.length; n++) {
+                        tempList.push(<FeedItem url={urls[n]} />);
+                    }
+                }
+                this.setState({
+                    itemList: tempList
+                }, () => {
+                    //render the new items
+                    this.Bricks();
+                })
+            }
+            )
+    }
     //setting the styles for each feed item
     Bricks() {
 
@@ -127,6 +130,8 @@ class FeedList extends Component {
     }
 
     render() {
+
+        this.getData();
         return (
             <div className='feed rel'>
                 <div className='brickbox rel'>
