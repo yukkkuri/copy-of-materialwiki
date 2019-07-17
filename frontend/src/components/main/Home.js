@@ -1,12 +1,11 @@
 //this component shows websites collection of the logged-in user
 import React from 'react'
-import Feed from './Feed'
+import FeedList from './FeedList'
 
 const Home = (props) => {
-
     return (
         < >
-                <Feed />
+                <FeedList />
         </>
     );
 

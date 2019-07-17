@@ -120,13 +120,27 @@ code {
 }
 
 .feed .item{
-  background:#dadada;
+  background:none;
   width: 240px;
   margin-bottom: 20px;
   border-radius: 5px;
 }
-
-.feed .item-ph{
-  min-height:200px;
+.feed .item:hover{
+  background:#dadada;
+  width: 240px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  cursor:zoom-in;
 }
 
+
+
+.feed .image{
+  display: block;
+  margin:10px 0 0 0;
+  margin-left: auto;
+  margin-right: auto;
+  width:220px;
+  border-radius: 5px;
+  /* height:150px; */
+}
