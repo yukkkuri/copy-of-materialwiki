@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FeedItem from './FeedItem'
 import $ from "jquery"
 import axios from 'axios'
+import { throwStatement } from '@babel/types';
 
 class FeedList extends Component {
 
@@ -18,6 +19,7 @@ class FeedList extends Component {
 
     componentDidMount() {
         this.getData();
+        this.firstRender();
         window.addEventListener("resize", this.Bricks);
         window.addEventListener("scroll", this.handleScroll);
     }
@@ -51,6 +53,36 @@ class FeedList extends Component {
         }
     }
 
+    firstRender() {
+        $(document).ready(() => {
+            // Images loaded is zero because we're going to process a new set of images.
+            var imagesLoaded = 0;
+            // Total images is still the total number of <img> elements on the page.
+            var totalImages = $('.feed .brick .image').length;
+
+            // Step through each image in the DOM, clone it, attach an onload event
+            // listener, then set its source to the source of the original image. When
+            // that new image has loaded, fire the imageLoaded() callback.
+            $('.feed .brick .image').each(function (idx, img) {
+                $('<img>').on('load', imageLoaded).attr('src', $(img).attr('src'));
+            });
+
+            // Do exactly as we had before -- increment the loaded count and if all are
+            // loaded, call the allImagesLoaded() function.
+            function imageLoaded() {
+                imagesLoaded++;
+                if (imagesLoaded == totalImages) {
+                    allImagesLoaded();
+                }
+            }
+            var self =this;
+            function allImagesLoaded(){
+                console.log('ALL IMAGES LOADED');
+                self.Bricks();
+            }
+        });
+    }
+
     getData() {
         //number of feed items to load each time
         var pageLimit = 20;
@@ -80,7 +112,7 @@ class FeedList extends Component {
                 }
                 this.setState({
                     itemList: tempList
-                },()=>{
+                }, () => {
                     this.Bricks();
                 })
                 console.log('getting data');
@@ -121,7 +153,7 @@ class FeedList extends Component {
     }
 
     render() {
-        this.Bricks();
+
         return (
             <div className='feed rel'>
                 <div className='brickbox rel'>
