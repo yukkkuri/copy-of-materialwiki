@@ -17,16 +17,14 @@ class FeedList extends Component {
     }
 
     componentDidMount() {
-
-        window.addEventListener("resize", this.Bricks());
+        this.getData();
+        window.addEventListener("resize", this.Bricks);
         window.addEventListener("scroll", this.handleScroll);
-
     }
 
     handleScroll = () => {
         //number of feed items to load each time
         var pageLimit = 20;
-
         //activate when scrolling
         if (window.scrollY + $(window).height() > $(document).height() - 400) {
             //if there are more items to be loaded
@@ -49,32 +47,25 @@ class FeedList extends Component {
                     //render the new items
                     this.Bricks();
                 })
-
-
             }
         }
     }
-    getData() {
 
+    getData() {
         //number of feed items to load each time
         var pageLimit = 20;
-
         //get unsplash images
 
         axios.get('https://api.unsplash.com/photos/?client_id=66d4c29b16aa566253b58f4519b08355594d5e53a660cf28844c8021ac94874c')
             .then((res) => {
-
                 var urls = [];
                 res.data.forEach((obj) => { urls.push(obj.urls.regular); });
-
                 //load all item urls from the server
                 this.setState({
                     resultUrls: urls
                 })
-
                 return urls;
             })
-
             //send the urls to FeedItem
             .then((urls) => {
                 var tempList = [];
@@ -89,26 +80,25 @@ class FeedList extends Component {
                 }
                 this.setState({
                     itemList: tempList
-                }, () => {
-                    //render the new items
+                },()=>{
                     this.Bricks();
                 })
+                console.log('getting data');
             }
             )
     }
+
+
     //setting the styles for each feed item
     Bricks() {
-
         var margin = 20, width = 240,
             columnCount = Math.floor($('.feed').outerWidth() / (width + margin)),
             n = 0, row = 0, left = 0, top = 0, t = [];
-
         $('.brickbox').each(function () {
             $(this).css({
                 width: columnCount * (width + margin)
             })
         })
-
         for (var i = 0; i < columnCount; i++) {
             t[i] = 0;
         }
@@ -126,12 +116,12 @@ class FeedList extends Component {
             if (n >= columnCount) {
                 row++; n = 0;
             }
+            console.log('building brick');
         });
     }
 
     render() {
-
-        this.getData();
+        this.Bricks();
         return (
             <div className='feed rel'>
                 <div className='brickbox rel'>
