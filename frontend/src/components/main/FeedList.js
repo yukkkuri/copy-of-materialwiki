@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import FeedItem from './FeedItem'
 import $ from "jquery"
 import axios from 'axios'
-import { throwStatement } from '@babel/types';
+
+
+//number of feed items to load each time
+const pageLimit=20;
+
+
 
 class FeedList extends Component {
-
-
     constructor(props) {
         super(props);
         this.state = {
@@ -14,7 +17,7 @@ class FeedList extends Component {
             itemList: [],
             loading: false,
             resultUrls: []
-        }
+        };
     }
 
     componentDidMount() {
@@ -25,21 +28,21 @@ class FeedList extends Component {
     }
 
     handleScroll = () => {
-        //number of feed items to load each time
-        var pageLimit = 20;
+
+        var {itemList, resultUrls} = this.state;
         //activate when scrolling
         if (window.scrollY + $(window).height() > $(document).height() - 400) {
             //if there are more items to be loaded
-            if (this.state.itemList.length < this.state.resultUrls.length) {
-                var tempList = this.state.itemList;
+            if (itemList.length < resultUrls.length) {
+                var tempList = itemList;
                 //if there are more than 20 items to be loaded
-                if (this.state.resultUrls.length - this.state.itemList.length >= pageLimit) {
-                    for (var n = this.state.itemList.length; n < this.state.itemList.length + 20; n++) {
-                        tempList.push(<FeedItem url={this.state.resultUrls[n]} />);
+                if (resultUrls.length - itemList.length >= pageLimit) {
+                    for (var n = itemList.length; n < itemList.length + pageLimit; n++) {
+                        tempList.push(<FeedItem url={resultUrls[n]} />);
                     }
                 } else {
-                    for (var n = this.state.itemList.length; n < this.state.resultUrls.length - this.state.itemList.length; n++) {
-                        tempList.push(<FeedItem url={this.state.resultUrls[n]} />);
+                    for (var n = itemList.length; n < resultUrls.length - itemList.length; n++) {
+                        tempList.push(<FeedItem url={resultUrls[n]} />);
                     }
                 }
                 //load the new items
@@ -84,8 +87,7 @@ class FeedList extends Component {
     }
 
     getData() {
-        //number of feed items to load each time
-        var pageLimit = 20;
+
         //get unsplash images
 
         axios.get('https://api.unsplash.com/photos/?client_id=66d4c29b16aa566253b58f4519b08355594d5e53a660cf28844c8021ac94874c')
