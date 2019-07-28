@@ -8,6 +8,7 @@ import UserDashboard from './components/user/dashboard/Dashboard'
 import ManufacturerDashboard from './components/manufacturer/dashboard/Dashboard'
 
 import HomePage from './components/main/Home'
+import PinPage from './components/pin/PinPage'
 
 import UserSignIn from './components/user/auth/SignIn'
 import UserSignUp from './components/user/auth/SignUp'
@@ -20,12 +21,16 @@ class App extends Component {
 
   render() {
     return (
-
+      <BrowserRouter>
         <div className="wrapper rel">
             <Navbar />
-            <HomePage />
-        </div>
+            <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/pin/:pid" component={PinPage} />
 
+            </Switch>
+        </div>
+        </BrowserRouter>
     );
   }
 }

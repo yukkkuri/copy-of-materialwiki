@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 //number of feed items to load each time
-const pageLimit=20;
+const pageLimit = 20;
 
 
 
@@ -16,11 +16,13 @@ class FeedList extends Component {
             //itemList is the dom element of the feedItems, so whenever the itemList change, the page re-renders.
             itemList: [],
             loading: false,
-            resultUrls: []
+            imgData: []
         };
+       
     }
 
     componentDidMount() {
+        console.log('did mount');
         this.getData();
         this.firstRender();
         window.addEventListener("resize", this.Bricks);
@@ -29,20 +31,20 @@ class FeedList extends Component {
 
     handleScroll = () => {
 
-        var {itemList, resultUrls} = this.state;
+        var { itemList, imgData } = this.state;
         //activate when scrolling
         if (window.scrollY + $(window).height() > $(document).height() - 400) {
             //if there are more items to be loaded
-            if (itemList.length < resultUrls.length) {
+            if (itemList.length < imgData.length) {
                 var tempList = itemList;
                 //if there are more than 20 items to be loaded
-                if (resultUrls.length - itemList.length >= pageLimit) {
+                if (imgData.length - itemList.length >= pageLimit) {
                     for (var n = itemList.length; n < itemList.length + pageLimit; n++) {
-                        tempList.push(<FeedItem url={resultUrls[n]} />);
+                        tempList.push(<FeedItem data={imgData[n]} />);
                     }
                 } else {
-                    for (var n = itemList.length; n < resultUrls.length - itemList.length; n++) {
-                        tempList.push(<FeedItem url={resultUrls[n]} />);
+                    for (var n = itemList.length; n < imgData.length - itemList.length; n++) {
+                        tempList.push(<FeedItem data={imgData[n]} />);
                     }
                 }
                 //load the new items
@@ -62,11 +64,11 @@ class FeedList extends Component {
             var imagesLoaded = 0;
             // Total images is still the total number of <img> elements on the page.
             var totalImages = $('.feed .brick .image').length;
-
             // Step through each image in the DOM, clone it, attach an onload event
             // listener, then set its source to the source of the original image. When
             // that new image has loaded, fire the imageLoaded() callback.
             $('.feed .brick .image').each(function (idx, img) {
+                console.log('loaded a new image');
                 $('<img>').on('load', imageLoaded).attr('src', $(img).attr('src'));
             });
 
@@ -78,10 +80,11 @@ class FeedList extends Component {
                     allImagesLoaded();
                 }
             }
-            var self =this;
-            function allImagesLoaded(){
+   
+            var that = this;
+            function allImagesLoaded() {
                 console.log('ALL IMAGES LOADED');
-                self.Bricks();
+                that.Bricks();
             }
         });
     }
@@ -92,24 +95,30 @@ class FeedList extends Component {
 
         axios.get('https://api.unsplash.com/photos/?client_id=66d4c29b16aa566253b58f4519b08355594d5e53a660cf28844c8021ac94874c')
             .then((res) => {
-                var urls = [];
-                res.data.forEach((obj) => { urls.push(obj.urls.regular); });
+                console.log(res);
+                // var urls = [];
+                var imgData =[];
+                // var ids =
+                res.data.forEach((obj) => { 
+                    imgData.push(obj);
+                    // urls.push(obj.urls.regular); 
+                });
                 //load all item urls from the server
                 this.setState({
-                    resultUrls: urls
+                    imgData
                 })
-                return urls;
+                return imgData;
             })
             //send the urls to FeedItem
-            .then((urls) => {
+            .then((imgData) => {
                 var tempList = [];
-                if (urls.length >= pageLimit) {
+                if (imgData.length >= pageLimit) {
                     for (var n = 0; n < pageLimit; n++) {
-                        tempList.push(<FeedItem url={urls[n]} />);
+                        tempList.push(<FeedItem data={imgData[n]} />);
                     }
                 } else {
-                    for (var n = 0; n < urls.length; n++) {
-                        tempList.push(<FeedItem url={urls[n]} />);
+                    for (var n = 0; n < imgData.length; n++) {
+                        tempList.push(<FeedItem data={imgData[n]} />);
                     }
                 }
                 this.setState({
@@ -155,6 +164,7 @@ class FeedList extends Component {
     }
 
     render() {
+
 
         return (
             <div className='feed rel'>

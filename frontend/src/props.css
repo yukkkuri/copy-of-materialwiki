@@ -1,6 +1,6 @@
 h1,h2,h3,h4,h5,h6{padding:0px;margin:0px;font-size:normal;font-weight: normal}
 ul,ol{list-style: none;padding: 0px;margin:0px;}
-.fixed{position: absolute;}
+.fixed{position: fixed;}
 .rel{position: relative;}
 .abs{position:absolute;}
 .bl{display: block;}
