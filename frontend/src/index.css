@@ -137,16 +137,11 @@ code {
 
 
 
-<<<<<<< HEAD
 .image.thumbnail{
-=======
-.feed .image{
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
   display: block;
   margin:10px 0 0 0;
   margin-left: auto;
   margin-right: auto;
-<<<<<<< HEAD
   width:210px;
   border-radius: 5px;
   /* height:150px; */
@@ -160,12 +155,6 @@ code {
 
   border-radius: 5px;
 }
-=======
-  width:220px;
-  border-radius: 5px;
-  /* height:150px; */
-}
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
 
 .pinpage-background{
   min-height:2000px;
@@ -184,11 +173,8 @@ code {
   box-shadow:rgb(207, 207, 207) 0px 4px 4px;
   min-height:600px;
 }
-<<<<<<< HEAD
 
 
 .container.modal-content-container{
   padding:10px;
 }
-=======
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26

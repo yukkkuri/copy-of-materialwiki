@@ -2,19 +2,13 @@ import React, { Component } from 'react'
 import FeedItem from './FeedItem'
 import $ from "jquery"
 import axios from 'axios'
-<<<<<<< HEAD
 import Modal from './Modal'
-=======
-
-
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
 //number of feed items to load each time
 const pageLimit = 20;
 
 
 
 class FeedList extends Component {
-<<<<<<< HEAD
 
     state = {
         //itemList is the dom element of the feedItems, so whenever the itemList change, the page re-renders.
@@ -27,31 +21,14 @@ class FeedList extends Component {
         showModal:false
     };
 
-=======
-    constructor(props) {
-        super(props);
-        this.state = {
-            //itemList is the dom element of the feedItems, so whenever the itemList change, the page re-renders.
-            itemList: [],
-            loading: false,
-            imgData: []
-        };
-       
-    }
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
 
     componentDidMount() {
         console.log('did mount');
         this.getData();
-<<<<<<< HEAD
-=======
-        this.firstRender();
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
         window.addEventListener("resize", this.Bricks);
         window.addEventListener("scroll", this.handleScroll);
     }
 
-<<<<<<< HEAD
     handleStateChange = (id) => {
         const data = this.state.imgData.filter(data => data.id === id)[0];
         this.setState({ currentImgData: data });
@@ -60,8 +37,6 @@ class FeedList extends Component {
 
     
 
-=======
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
     handleScroll = () => {
 
         var { itemList, imgData } = this.state;
@@ -73,19 +48,11 @@ class FeedList extends Component {
                 //if there are more than 20 items to be loaded
                 if (imgData.length - itemList.length >= pageLimit) {
                     for (var n = itemList.length; n < itemList.length + pageLimit; n++) {
-<<<<<<< HEAD
                         tempList.push(<FeedItem key={imgData[n].id} onClick={this.handleStateChange} data={imgData[n]} />);
                     }
                 } else {
                     for (var n = itemList.length; n < imgData.length - itemList.length; n++) {
                         tempList.push(<FeedItem key={imgData[n].id} onClick={this.handleStateChange} data={imgData[n]} />);
-=======
-                        tempList.push(<FeedItem data={imgData[n]} />);
-                    }
-                } else {
-                    for (var n = itemList.length; n < imgData.length - itemList.length; n++) {
-                        tempList.push(<FeedItem data={imgData[n]} />);
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
                     }
                 }
                 //load the new items
@@ -121,11 +88,6 @@ class FeedList extends Component {
                     allImagesLoaded();
                 }
             }
-<<<<<<< HEAD
-
-=======
-   
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
             var that = this;
             function allImagesLoaded() {
                 console.log('ALL IMAGES LOADED');
@@ -137,23 +99,13 @@ class FeedList extends Component {
     getData() {
 
         //get unsplash images
-<<<<<<< HEAD
-=======
-
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
         axios.get('https://api.unsplash.com/photos/?client_id=66d4c29b16aa566253b58f4519b08355594d5e53a660cf28844c8021ac94874c')
             .then((res) => {
                 console.log(res);
                 // var urls = [];
-<<<<<<< HEAD
                 var imgData = [];
                 // var ids =
                 res.data.forEach((obj) => {
-=======
-                var imgData =[];
-                // var ids =
-                res.data.forEach((obj) => { 
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
                     imgData.push(obj);
                     // urls.push(obj.urls.regular); 
                 });
@@ -168,19 +120,11 @@ class FeedList extends Component {
                 var tempList = [];
                 if (imgData.length >= pageLimit) {
                     for (var n = 0; n < pageLimit; n++) {
-<<<<<<< HEAD
                         tempList.push(<FeedItem key={imgData[n].id} handleStateChange={this.handleStateChange} data={imgData[n]} />);
                     }
                 } else {
                     for (var n = 0; n < imgData.length; n++) {
                         tempList.push(<FeedItem key={imgData[n].id} handleStateChange={this.handleStateChange} data={imgData[n]} />);
-=======
-                        tempList.push(<FeedItem data={imgData[n]} />);
-                    }
-                } else {
-                    for (var n = 0; n < imgData.length; n++) {
-                        tempList.push(<FeedItem data={imgData[n]} />);
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
                     }
                 }
                 this.setState({
@@ -188,12 +132,8 @@ class FeedList extends Component {
                 }, () => {
                     this.Bricks();
                 })
-<<<<<<< HEAD
                 console.log(imgData);
                 this.firstRender();
-=======
-                console.log('getting data');
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
             }
             )
     }
@@ -230,16 +170,11 @@ class FeedList extends Component {
         });
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
     render() {
 
 
         return (
             <div className='feed rel'>
-<<<<<<< HEAD
                 <Modal
                     imgData={this.state.currentImgData}
                     show={this.state.modalShow}
@@ -249,8 +184,6 @@ class FeedList extends Component {
                         })}
                 />
             
-=======
->>>>>>> 337a362cbd744fe3fb7cf0e15e0bdcf238366f26
                 <div className='brickbox rel'>
                     {this.state.itemList}
                 </div>
