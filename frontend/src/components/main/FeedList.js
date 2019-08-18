@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import FeedItem from './FeedItem'
 import $ from "jquery"
 import axios from 'axios'
-import Modal from './Modal'
+import PinModal from './modals/PinModal'
+
 //number of feed items to load each time
 const pageLimit = 20;
-
-
+const serverUrl = "http://localhost:5000/api/members/";
 
 class FeedList extends Component {
 
@@ -18,12 +18,23 @@ class FeedList extends Component {
         setModalShow: false,
         modalShow: false,
         currentImgData: {},
-        showModal:false
+        showModal: false
     };
 
 
     componentDidMount() {
-        console.log('did mount');
+
+        // fetch(serverUrl, {
+        //     method: 'get',
+        //     dataType: 'json',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     }
+        // })
+        //     .then(res => res.json())
+        //     .then(data => { console.log(data) });
+
         this.getData();
         window.addEventListener("resize", this.Bricks);
         window.addEventListener("scroll", this.handleScroll);
@@ -35,7 +46,7 @@ class FeedList extends Component {
         console.log(this.state.currentImgData);
     }
 
-    
+
 
     handleScroll = () => {
 
@@ -101,7 +112,6 @@ class FeedList extends Component {
         //get unsplash images
         axios.get('https://api.unsplash.com/photos/?client_id=66d4c29b16aa566253b58f4519b08355594d5e53a660cf28844c8021ac94874c')
             .then((res) => {
-                console.log(res);
                 // var urls = [];
                 var imgData = [];
                 // var ids =
@@ -175,7 +185,7 @@ class FeedList extends Component {
 
         return (
             <div className='feed rel'>
-                <Modal
+                <PinModal
                     imgData={this.state.currentImgData}
                     show={this.state.modalShow}
                     onHide={() =>
@@ -183,7 +193,7 @@ class FeedList extends Component {
                             modalShow: false
                         })}
                 />
-            
+
                 <div className='brickbox rel'>
                     {this.state.itemList}
                 </div>

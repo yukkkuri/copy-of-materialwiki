@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Modal extends Component {
+class PinModal extends Component {
   state = {
     imgData: {}
   }
@@ -15,11 +15,11 @@ class Modal extends Component {
 
     return (
 
-      <div className="modal bd-example-modal-lg fade" id="introModal" tabindex="-1" role="dialog" aria-labelledby="introModalLabel" aria-hidden="true">
+      <div className="modal bd-example-modal-lg fade" id="pinModal" tabindex="-1" role="dialog" aria-labelledby="#pinModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-lg" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="introModalLabel">
+              <h5 className="modal-title" id="#pinModalLabel">
                 {this.state.imgData.description ? this.state.imgData.description : "no title"}
               </h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -63,5 +63,5 @@ class Modal extends Component {
       }
     }
     
-    export default Modal
+    export default PinModal
     

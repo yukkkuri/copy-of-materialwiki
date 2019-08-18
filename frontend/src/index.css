@@ -158,7 +158,6 @@ code {
 
 .pinpage-background{
   min-height:2000px;
-  
   background: linear-gradient(rgb(238, 238, 238) 300px, rgb(255, 255, 255) 100%);
 }
 
@@ -178,3 +177,17 @@ code {
 .container.modal-content-container{
   padding:10px;
 }
+
+#upload-button{
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, .1), 0 0 0 0.5px rgba(0, 0, 0, .04);
+  border: 0;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  transform: translateZ(0);
+  height: 40px;
+  width: 40px;
+}
+

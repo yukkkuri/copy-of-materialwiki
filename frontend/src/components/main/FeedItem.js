@@ -9,7 +9,7 @@ class FeedItem extends Component {
         const { urls } = this.props.data;
         return (
             <div className='item brick rel anim'>
-                <div className="nav-link default-link" title="go to your data dashboard" data-toggle="modal" data-target="#introModal" onClick={this.handleChange}>
+                <div className="nav-link default-link" title="go to your data dashboard" data-toggle="modal" data-target="#pinModal" onClick={this.handleChange}>
                     <img className='image thumbnail' src={urls.regular} />
                 </div>
             </div>
