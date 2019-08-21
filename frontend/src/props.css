@@ -1,19 +1,59 @@
-h1,h2,h3,h4,h5,h6{padding:0px;margin:0px;font-size:normal;font-weight: normal}
-ul,ol{list-style: none;padding: 0px;margin:0px;}
-.fixed{position: fixed;}
-.rel{position: relative;}
-.abs{position:absolute;}
-.bl{display: block;}
-.ibl li, .ibl{display: inline-block;}
-.noul{text-decoration: none;}
-.anim{transition: all 0.2s linear 0s;}
+h1, h2, h3, h4, h5, h6 {
+  padding: 0px;
+  margin: 0px;
+  font-size: normal;
+  font-weight: normal
+}
 
-.s15{font-size:15px;}
-.s12{font-size:12px;}
+ul, ol {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.rel {
+  position: relative;
+}
+
+.abs {
+  position: absolute;
+}
+
+.bl {
+  display: block;
+}
+
+.ibl li, .ibl {
+  display: inline-block;
+}
+
+.noul {
+  text-decoration: none;
+}
+
+.anim {
+  transition: all 0.2s linear 0s;
+}
+
+.s15 {
+  font-size: 15px;
+}
+
+.s12 {
+  font-size: 12px;
+}
+
 hr {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-  }
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
 
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+  font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}

@@ -3,16 +3,23 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const imageSchema = new Schema({
+    // id:{
+    //     type: String,
+    //     required: true,
+    //     trim: true,
+    //     unique:true
+    // },
     name: {
         type: String,
         required: true,
-        unique: true,
-        trim: true,
-        minlength: 3
+        trim: true
+        //minlength: 3s
     },
     tags: {
-        type: Array,
-        required: true
+        // type: Array,
+        type: Array,        
+        required: true,
+        trim: true
     },
     company: {
         type: String,
