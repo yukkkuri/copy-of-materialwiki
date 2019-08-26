@@ -3,62 +3,58 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const imageSchema = new Schema({
-    // id:{
-    //     type: String,
-    //     required: true,
-    //     trim: true,
-    //     unique:true
-    // },
+
+    _id: mongoose.Schema.Types.ObjectId,
     name: {
         type: String,
-        required: true,
+        // required: true,
         trim: true
         //minlength: 3s
     },
     tags: {
         // type: Array,
-        type: Array,        
-        required: true,
+        type: Array,
+        // required: true,
         trim: true
     },
     company: {
         type: String,
-        required: true,
+        // required: true,
         trim: true
     },
     tel: {
         type: String,
-        required: true,
+        // required: true,
         trim: true
     },
     website: {
         type: String,
-        required: true,
+        // required: true,
         trim: true
     },
     project: {
         type: String,
-        required: true,
+        // required: true,
         trim: true
     },
     location: {
         type: String,
-        required: true,
+        // required: true,
         trim: true
     },
     product: {
         type: String,
-        required: true,
+        // required: true,
         trim: true
     },
     designer: {
         type: String,
-        required: true,
+        // required: true,
         trim: true
     },
     year: {
-        type: Number,
-        required: true,
+        type: String,
+        // required: true,
         trim: true
     }
 }, {
@@ -66,6 +62,6 @@ const imageSchema = new Schema({
     }
 )
 
-const image = mongoose.model("image",imageSchema);
+const image = mongoose.model("image", imageSchema);
 
-module.exports= image;
+module.exports = image;

@@ -164,27 +164,9 @@ class UploadModal extends Component {
 
     onSubmit = async e => {
         e.preventDefault();
+
+        // prepare form data
         const formData = new FormData();
-        formData.append('file', this.state.file);
-
-        try {
-            const res = await axios.post("http://localhost:5000/upload", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            })
-            const { fileName, filePath } = res.data;
-            this.setState({
-                uploadedFile: { fileName, filePath }
-            })
-        } catch (err) {
-            if (err.response.status === 500) {
-                console.log("There was a problem with the server");
-            } else {
-                console.log(err.response.data.msg);
-            }
-        }
-
         const imageData = {
             name: this.state.name,
             tags: this.state.tags,
@@ -197,10 +179,22 @@ class UploadModal extends Component {
             designer: this.state.designer,
             year: this.state.year
         }
-        console.log(imageData);
-        axios.post("http://localhost:5000/image/add", imageData)
+        formData.append('file', this.state.file);
+        Object.keys(imageData).forEach(key => {
+            formData.append(key, imageData[key]);
+            console.log(key + ":" + imageData[key]);
+        })
+
+        // set config
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        };
+        
+        axios.post("http://localhost:5000/image/add", formData, config)
             .then(res => console.log(res.data));
-            
+
         /*
          * once submitted, redirect to the initial upload page
          */
@@ -245,7 +239,7 @@ class UploadModal extends Component {
                             <div className="container modal-content-container">
                                 <form onSubmit={this.onSubmit}>
                                     <div className="custom-file mb-4">
-                                        <input className="custom-file-input" id="upload-image" name="newImg" type="file" onChange={this.onChangeFile} />
+                                        <input className="custom-file-input" id="upload-image" name="newImage" type="file" onChange={this.onChangeFile} />
                                         <label className="custom-file-label" htmlFor="upload-image">{this.state.fileName}</label>
                                         <small id="emailHelp" className="form-text text-muted">upload your image.</small>
                                     </div>
