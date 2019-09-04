@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+module.exports = image => {
+
+};
+
 const imageSchema = new Schema({
 
     _id: mongoose.Schema.Types.ObjectId,

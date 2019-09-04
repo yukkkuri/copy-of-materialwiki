@@ -1,8 +1,6 @@
 const express = require("express");
-
 const app = require("./app");
 const mongoose = require("mongoose");
-
 
 require("dotenv").config();
 // const path = require("path");
@@ -21,7 +19,6 @@ const connection = mongoose.connection;
 connection.once("open", () => {
     console.log("MongoDB database connection established successfully");
 });
-
 
 //set up the port
 app.listen(PORT, () => {

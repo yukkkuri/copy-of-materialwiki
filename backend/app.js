@@ -1,19 +1,15 @@
 const express = require("express")
 const app = express();
-// middlewares
 const cors = require('cors');
-// routers
 const imageRouter = require("./routes/image");
 
-//enable CORS
+//middlewares
 app.use(cors())
-
-// json body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+//routers
 app.use("/image", imageRouter);
-
 
 /*
  * unused code

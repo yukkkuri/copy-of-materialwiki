@@ -26,11 +26,9 @@ router.post("/", (req, res) => {
     if (!newMember.email || !newMember.name) {
         return res.status(400).json({ msg: "Please include a name and email" });
     }
-
     /*
     * Here you inject some operations on the database
     */
-
     members.push(newMember);
     res.json(members);
 })

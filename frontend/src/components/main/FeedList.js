@@ -47,7 +47,6 @@ class FeedList extends Component {
     }
 
 
-
     handleScroll = () => {
 
         var { itemList, imgData } = this.state;
