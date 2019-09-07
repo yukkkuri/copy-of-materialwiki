@@ -3,7 +3,7 @@ import FeedItem from './FeedItem'
 import $ from "jquery"
 import axios from 'axios'
 import PinModal from './modals/PinModal'
-
+import './feedList.css'
 //number of feed items to load each time
 const pageLimit = 20;
 const serverUrl = "http://localhost:5000/api/members/";
@@ -11,7 +11,7 @@ const serverUrl = "http://localhost:5000/api/members/";
 class FeedList extends Component {
 
     state = {
-        //itemList is the dom element of the feedItems, so whenever the itemList change, the page re-renders.
+        //itemList is the dom element of the feedItems, whenever the itemList change, the page re-renders.
         itemList: [],
         loading: false,
         imgData: [],
@@ -20,7 +20,6 @@ class FeedList extends Component {
         currentImgData: {},
         showModal: false
     };
-
 
     componentDidMount() {
 
@@ -34,7 +33,6 @@ class FeedList extends Component {
         // })
         //     .then(res => res.json())
         //     .then(data => { console.log(data) });
-
         this.getData();
         window.addEventListener("resize", this.Bricks);
         window.addEventListener("scroll", this.handleScroll);
@@ -45,7 +43,6 @@ class FeedList extends Component {
         this.setState({ currentImgData: data });
         console.log(this.state.currentImgData);
     }
-
 
     handleScroll = () => {
 
@@ -78,38 +75,29 @@ class FeedList extends Component {
 
     firstRender() {
         $(document).ready(() => {
-            // Images loaded is zero because we're going to process a new set of images.
-            var imagesLoaded = 0;
-            // Total images is still the total number of <img> elements on the page.
-            var totalImages = $('.feed .brick .image').length;
-            // Step through each image in the DOM, clone it, attach an onload event
-            // listener, then set its source to the source of the original image. When
-            // that new image has loaded, fire the imageLoaded() callback.
-            $('.feed .brick .image').each(function (idx, img) {
-                console.log('loaded a new image');
-                $('<img>').on('load', imageLoaded).attr('src', $(img).attr('src'));
-            });
 
-            // Do exactly as we had before -- increment the loaded count and if all are
-            // loaded, call the allImagesLoaded() function.
-            function imageLoaded() {
+            const imageLoaded = () => {
                 imagesLoaded++;
                 if (imagesLoaded == totalImages) {
                     allImagesLoaded();
                 }
             }
-            var that = this;
-            function allImagesLoaded() {
-                console.log('ALL IMAGES LOADED');
-                that.Bricks();
+            const allImagesLoaded = () => {
+                this.Bricks();
             }
+            var imagesLoaded = 0,
+                totalImages = $('.feed .brick .image').length;
+            $('.feed .brick .image').each(function (idx, img) {
+                $('<img>').on('load', imageLoaded).attr('src', $(img).attr('src'));
+            });
+
         });
     }
 
     getData() {
 
         //get unsplash images
-        axios.get('https://api.unsplash.com/photos/?client_id=66d4c29b16aa566253b58f4519b08355594d5e53a660cf28844c8021ac94874c')
+        axios.get(this.props.imgUrl)
             .then((res) => {
                 // var urls = [];
                 var imgData = [];
@@ -147,13 +135,19 @@ class FeedList extends Component {
             )
     }
 
-
-    //setting the styles for each feed item
+    // setting the styles for each feed item
     Bricks() {
-        var margin = 20, width = 240,
+
+        var margin = 10, width = 240,
             columnCount = Math.floor($('.feed').outerWidth() / (width + margin)),
             n = 0, row = 0, left = 0, top = 0, t = [];
+
+        // this.container.childNodes.forEach(node => {
+        //     console.log(node.style.width = columnCount * (width + margin));
+        // })
+
         $('.brickbox').each(function () {
+            console.log($(this));
             $(this).css({
                 width: columnCount * (width + margin)
             })
@@ -181,7 +175,6 @@ class FeedList extends Component {
 
     render() {
 
-
         return (
             <div className='feed rel'>
                 <PinModal
@@ -193,7 +186,7 @@ class FeedList extends Component {
                         })}
                 />
 
-                <div className='brickbox rel'>
+                <div className='brickbox rel' >
                     {this.state.itemList}
                 </div>
             </div>

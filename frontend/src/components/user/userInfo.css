@@ -1,0 +1,12 @@
+.user-info {
+    height: 100px;
+}
+
+.user-info__row {
+    margin: 20px;
+}
+
+.user-info__row__photo {
+    font-size: 60px;
+    text-align: center;
+}

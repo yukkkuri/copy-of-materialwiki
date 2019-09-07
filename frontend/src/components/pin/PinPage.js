@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-
-import $ from "jquery"
-import axios from 'axios'
-
+import './pinPage.css'
 
 //number of feed items to load each time
 const pageLimit = 20;

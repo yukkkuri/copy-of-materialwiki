@@ -1,0 +1,105 @@
+.header {
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 60px;
+    z-index: 99;
+    background: #ffffff;
+}
+.header a{
+    text-decoration: none;
+}
+.header .logo {
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    border-radius: 100%;
+}
+
+.header .logo img {
+    height: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.header .logo:hover {
+    background: #e2e2e2;
+}
+
+.header .searchbox {
+    top: 50%;
+    left: 100px;
+    right: 375px;
+    background: #ececec;
+    border-radius: 4px;
+    transform: translateY(-50%);
+}
+
+.header .searchbox .query {
+    width: 100%;
+    border: 0px;
+    background: rgba(0, 0, 0, 0);
+    padding: 12px;
+    font-weight: bold;
+    outline: none;
+}
+
+.header .searchbox .send {
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 44px;
+    font-size: 19px;
+    border: 0px;
+    border-radius: 0px 4px 4px 0px;
+    background: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    outline: none;
+    color: #777;
+}
+
+.header .nav {
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.header .nav li {
+    margin-left: 6px;
+}
+
+.header .nav li a {
+    color: #444;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 30px;
+}
+
+.header .nav li a:hover {
+    background: #ececec;
+}
+
+.header .nav li a .ico {
+    font-size: 16px;
+    vertical-align: bottom;
+}
+
+.header .nav li a .counter {
+    background: #ff3100;
+    color: #fff;
+    font-family: arial;
+    font-weight: bold;
+    padding: 3px;
+    line-height: 1;
+    border-radius: 10px;
+    top: 1px;
+    right: 2px;
+}
+
+.hclr {
+    height: 60px;
+}

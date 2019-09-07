@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './feedItem.css'
 
 class FeedItem extends Component {
 
@@ -9,7 +10,7 @@ class FeedItem extends Component {
         const { urls } = this.props.data;
         return (
             <div className='item brick rel anim'>
-                <div className="nav-link default-link" title="go to your data dashboard" data-toggle="modal" data-target="#pinModal" onClick={this.handleChange}>
+                <div  title="image detail" data-toggle="modal" data-target="#pinModal" onClick={this.handleChange}>
                     <img className='image thumbnail' src={urls.regular} />
                 </div>
             </div>

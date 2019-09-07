@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import './inputTag.css'
 
-class InputTag extends React.Component {
+class InputTag extends Component {
     constructor() {
         super();
 

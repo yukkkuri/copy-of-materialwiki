@@ -1,0 +1,16 @@
+.pinpage-background {
+    min-height: 2000px;
+    background: linear-gradient(rgb(238, 238, 238) 300px, rgb(255, 255, 255) 100%);
+}
+
+.pinbox {
+    border-radius: 8px;
+    background-color: white;
+    position: relative;
+    top: 30px;
+    margin: auto;
+    max-width: 912px;
+    box-sizing: border-box;
+    box-shadow: rgb(207, 207, 207) 0px 4px 4px;
+    min-height: 600px;
+}
