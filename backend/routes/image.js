@@ -1,15 +1,7 @@
 const router = require("express").Router();
 const Image = require("../controller/ImageController");
-const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/uploads')
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname)
-    }
-});
-const upload = multer({ storage: storage });
+const upload = require("../services/s3");
+
 
 // get all images
 router.route("/").get(async (req, res) => {
